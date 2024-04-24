@@ -1,0 +1,54 @@
+# TO-DO Tasks: API Sync
+
+## Como rodar o código
+
+Entre em `ponderadas-m10/p1-back-sync` e execute o seguinte comando para criar uma virtual environment:
+
+```
+python3 -m venv venv
+```
+
+Em seguida "ative" o ambiente com o seguinte comando:
+
+```
+source venv/bin/activate
+```
+
+Após isso, instale as bibliotecas necessarias:
+
+```
+pip install -r requirements.txt
+```
+
+Depois de realizados os passos acima, execute a API com o comando abaixo:
+```
+python3 main.py
+```
+
+Para acessar a documentação Swagger da API acesse http://127.0.0.1:5000/documentation/
+
+## Estrutura dos arquivos
+
+```
+p1-back-sync
+├── database
+│   ├── create_tables.py
+│   └── sqlite.db
+├── static
+│   ├── insomnia-todo-sync.json
+│   └── swagger.json
+├── main.py
+├── README.md
+├── requirements.txt
+
+```
+
+### Descrição dos arquivos
+
+- `database/create_tables.py`: Arquivo que foi executado para criação do banco de dados sqlite. Para executá-lo entre em seu diretório e rode o comando `python3 create_tables.py` no terminal (não é necessário pois o db já foi adicionado ao repositório).
+- `database/sqlite.db`: Banco de dados criado para a salvar as informações. (Atenção: esse arquivo só foi commitado pois possui pouquissima informações armazenadas).
+- `static/insomnia-todo-sync.json`: Coleção de Insomnia para testar a API.
+- `static/swagger.json`: Json responsável por gerar o Swagger para documentação da API.
+- `main.py`: Arquivo principal para execução da API.
+- `README.md`: Este arquivo.
+- `requirements.txt`: Bibliotecas necessárias para funcionamento do sistema.
