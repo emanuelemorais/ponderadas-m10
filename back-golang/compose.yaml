@@ -1,4 +1,6 @@
 version: "3.9"
+volumes:
+  postgres_data: 
 
 services:
   postgres:
@@ -11,4 +13,18 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-db}
       POSTGRES_USER: ${POSTGRES_USER:-user}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+    volumes:
+      - ./models/migrations/tables.sql:/docker-entrypoint-initdb.d/tables.sql:ro
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./.env
+    depends_on:
+      - postgres
 

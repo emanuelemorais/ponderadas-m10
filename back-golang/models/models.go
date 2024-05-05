@@ -6,7 +6,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 	"github.com/golang-jwt/jwt/v5"
     "time"
@@ -15,16 +14,12 @@ import (
 var secretKey = []byte("secret-key")
 
 func ConnectDb() *sql.DB {
-	err := godotenv.Load("./.env")
-	if err != nil {
-		log.Fatalf("Erro ao carregar o arquivo .env: %v", err)
-	}
 
 	dbUser := os.Getenv("POSTGRES_USER")
 	dbPassword := os.Getenv("POSTGRES_PASSWORD")
 	dbName := os.Getenv("POSTGRES_DB")
 
-	connectionString := fmt.Sprintf("postgres://%s:%s@localhost:5432/%s?sslmode=disable", dbUser, dbPassword, dbName)
+	connectionString := fmt.Sprintf("postgres://%s:%s@host.docker.internal:5432/%s?sslmode=disable", dbUser, dbPassword, dbName)
 	db, err := sql.Open("postgres", connectionString)
 	if err != nil {
 		log.Fatalf("Erro ao abrir conexão com o banco de dados: %v", err)
@@ -60,4 +55,4 @@ func VerifyToken(tokenString string) error {
 	   return fmt.Errorf("Token inválido")
 	}  
 	return nil
- }
+}

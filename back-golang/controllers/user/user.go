@@ -17,18 +17,31 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var user User
 	_ = json.NewDecoder(r.Body).Decode(&user)
-	userModel.NewUser(user.Name, user.Email, user.Password)
-	w.WriteHeader(http.StatusOK)
-	message := "Usuario cadastrado com sucesso"
-	w.Write([]byte(message))
+	err := userModel.NewUser(user.Name, user.Email, user.Password)
 
+	if err != nil {
+        w.WriteHeader(http.StatusInternalServerError)
+        message := "Erro ao cadastrar usuário. Email já cadastrado."
+        w.Write([]byte(message))
+        return
+		
+    } else {
+		w.WriteHeader(http.StatusOK)
+		message := "Usuario cadastrado com sucesso"
+		w.Write([]byte(message))
+		return
+	}
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var user User
 	_ = json.NewDecoder(r.Body).Decode(&user)
-	token := userModel.Login(user.Email, user.Password)
+	token, userID := userModel.Login(user.Email, user.Password)
+	response := map[string]interface{}{
+        "token": token,
+        "userID": userID,
+    }
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(token))
+	json.NewEncoder(w).Encode(response)
 }
