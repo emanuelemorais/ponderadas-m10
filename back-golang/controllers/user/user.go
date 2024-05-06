@@ -13,6 +13,14 @@ type User struct {
 	Password string `json:"password"`
 }
 
+// CreateUser cria um novo usuário
+// @Summary Cria um novo usuário
+// @Description Cria um novo usuário com os dados fornecidos
+// @Accept json
+// @Produce json
+// @Param body body User true "Dados do novo usuário"
+// @Success 201 {object} UserResponse
+// @Router /createUser [post]
 func CreateUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var user User
