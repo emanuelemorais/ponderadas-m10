@@ -17,7 +17,7 @@ type Task struct {
 func GetAllTasksById(userID string) ([]Task, error){
 	db := models.ConnectDb()
 
-	rows, err := db.Query("SELECT * FROM tasks WHERE user_id = $1", userID)
+	rows, err := db.Query("SELECT * FROM tasks WHERE user_id = $1 ORDER BY id", userID)
     if err != nil {
         return nil, err
     }
