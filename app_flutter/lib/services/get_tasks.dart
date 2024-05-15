@@ -14,6 +14,7 @@ Future<List<TaksModel>> getTasks(String token) async {
   if (response.statusCode == 200) {
     return taskFromJson(response.body);
   } else {
+    print(response.body);
     throw Exception("Erro ao solicitar dados da API.");
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:app_flutter/services/post_task.dart';
+//import 'package:flutter/widgets.dart';
 
 class NewTask extends StatefulWidget {
   final Function() refreshTasks;
@@ -32,6 +33,8 @@ class _NewTaskState extends State<NewTask> {
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
+              fontFamily: 'Poppins',
+              color: Color.fromARGB(255, 106, 71, 171)
             ),
           ),
         ),
@@ -43,6 +46,9 @@ class _NewTaskState extends State<NewTask> {
           ),
           child: TextFormField(
             decoration: const InputDecoration(
+                hintStyle:TextStyle(
+                  fontFamily: 'Poppins'
+                ),
                 labelText: 'Title',
                 border: OutlineInputBorder(),
                 fillColor: Colors.white),
@@ -63,6 +69,9 @@ class _NewTaskState extends State<NewTask> {
           child: TextField(
           keyboardType: TextInputType.multiline,
           decoration: const InputDecoration(
+            hintStyle:TextStyle(
+                  fontFamily: 'Poppins'
+            ),
             labelText: 'Description',
             border: OutlineInputBorder(),
           ),
@@ -78,7 +87,13 @@ class _NewTaskState extends State<NewTask> {
             await postTask(_title, _description, widget.token);
             await widget.refreshTasks();
           },
-          child: Text('Enviar'),
+          child: const Text(
+            'Enviar',
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       ],
     );

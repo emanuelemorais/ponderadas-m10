@@ -59,11 +59,17 @@ class _TaskCardState extends State<TaskCard> {
             _isEditing
                 ? TextFormField(
                     controller: _titleController,
-                    decoration: InputDecoration(labelText: 'Title'),
+                    decoration: InputDecoration(
+                      labelText: 'Title',
+                      ),
                   )
                 : Text(
                     widget.title,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                      fontSize: 18, 
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Poppins'
+                    ),
                   ),
             SizedBox(height: 8),
             _isEditing
@@ -71,7 +77,13 @@ class _TaskCardState extends State<TaskCard> {
                     controller: _descriptionController,
                     decoration: InputDecoration(labelText: 'Description'),
                   )
-                : Text(widget.description),
+                : Text(
+                  widget.description,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontFamily: 'Poppins'
+                  ),
+                ),
             SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,

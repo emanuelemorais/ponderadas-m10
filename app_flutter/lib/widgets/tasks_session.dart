@@ -45,7 +45,7 @@ class _TasksSessionState extends State<TasksSession> {
 
               //error
             } else if (snapshot.hasError) {
-              return Text('${snapshot.error}');
+              return Text('No tasks registered');
             }
             // waiting
             return const CircularProgressIndicator();

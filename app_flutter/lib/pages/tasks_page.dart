@@ -29,7 +29,14 @@ class _PageTasksState extends State<PageTasks> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tasks App'),
+        title: const Text(
+          'Tasks App',
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(255, 106, 71, 171)
+          ),
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.all(16),
@@ -54,6 +61,8 @@ class _PageTasksState extends State<PageTasks> {
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
+                  fontFamily: 'Poppins',
+                  color: Color.fromARGB(255, 106, 71, 171)
                 ),
               ),
             ),
